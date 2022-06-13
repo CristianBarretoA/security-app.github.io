@@ -1,0 +1,119 @@
+<!Doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <title>Bootstrap demo</title>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="">
+
+
+<header>
+    <nav class="navbar bg-secondary">
+        <div class="container px-2">
+            <a class="navbar-brand text-light fw-semibold" href="index.html">Security App</a>
+            <a class="navbar-brand" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <svg width="30" height="30" fill="currentColor" class="bi bi-person-circle text-light" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                </svg>
+            </a>
+            <div class="offcanvas offcanvas-end mx-1" tabindex="-1" id="offcanvasNavbar" aria-hidden="true" aria-labelledby="offcanvasNavbarLabel" style="max-width: 75%">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Security App</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Perfil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Configurar Personas</a>
+                        </li>
+                        <li class="nav-item" data-bs-dismiss="offcanvas">
+                            <a class="nav-link active" aria-current="page"  data-bs-toggle="modal" data-bs-target="#compartirUbicacion">Compartir Ubicación</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="app/cai-cercanos.html">CAI Cercanos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Consejos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="container px-2 pt-4 bg-white">
+    <div class="row px-2">
+        <h1 >Ubicación actual</h1>
+    </div>
+    <section class="row px-2 map-container">
+        <div id="map" class="col mb-4 mx-4"></div>
+    </section>
+
+    <section class="row text-center">
+        <svg height="95" fill="currentColor" class="bi bi-compass text-danger" viewBox="0 0 16 16" >
+            <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016zm6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+            <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z"/>
+        </svg>
+        <label class="text-danger fw-semibold mx-auto fs-3">Presione para alertar</label>
+    </section>
+</main>
+
+
+<!-- Modal -->
+<div class="modal fade" id="compartirUbicacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-6" id="exampleModalLabel">¿Con quien desea compartir su ubicación?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Seleccione</option>
+                    <option value="1">Todos</option>
+                    <option value="2">Persona 1</option>
+                    <option value="3">Persona 2</option>
+                </select>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Compartir</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function initMap() {
+        // Map options
+        var options = {
+            zoom: 8,
+            center: { lat: 4.62917, lng: -74.07521 }
+        }
+
+        // New map
+        var map = new google.maps.Map(document.getElementById('map'), options);
+
+    }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVLTdDFyZJkoXgw0GXu_g4GJV2zOtzlyA&callback=initMap">
+</script>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+</body>
+</html>

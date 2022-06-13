@@ -1,0 +1,161 @@
+<!Doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <title>Cai Cercanos</title>
+  <style>
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body class="">
+
+
+<header>
+  <nav class="navbar bg-secondary">
+    <div class="container px-2">
+      <a class="navbar-brand text-light fw-semibold" href="../index.html">Security App</a>
+      <a class="navbar-brand" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        <svg width="30" height="30" fill="currentColor" class="bi bi-person-circle text-light" viewBox="0 0 16 16">
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+          <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+        </svg>
+      </a>
+      <div class="offcanvas offcanvas-end mx-1" tabindex="-1" id="offcanvasNavbar" aria-hidden="true" aria-labelledby="offcanvasNavbarLabel" style="max-width: 75%">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Security App</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Perfil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Configurar Personas</a>
+            </li>
+            <li class="nav-item" data-bs-dismiss="offcanvas">
+              <a class="nav-link active" aria-current="page"  data-bs-toggle="modal" data-bs-target="#compartirUbicacion">Compartir Ubicación</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="cai-cercanos.html">CAI Cercanos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="../index.html">Consejos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="../index.html">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main class="container px-2 pt-4 bg-white">
+  <div class="row px-2">
+    <h1>CAI Cercanos</h1>
+  </div>
+  <section class="row px-2 map-container">
+    <form class="d-flex my-1 pb-2" role="search">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    </form>
+    <div id="map" class="col mb-4 mx-4"></div>
+  </section>
+
+  <section class="row text-center">
+    <svg height="95" fill="currentColor" class="bi bi-telephone-fill text-danger mb-2" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+    </svg>
+    <label class="text-danger fw-semibold mx-auto fs-5">Presione para llamar al CAI mas cercano</label>
+  </section>
+</main>
+
+
+<!-- Modal -->
+<div class="modal fade" id="compartirUbicacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fs-6" id="exampleModalLabel">¿Con quien desea compartir su ubicación?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <select class="form-select" aria-label="Default select example">
+          <option selected>Seleccione</option>
+          <option value="1">Todos</option>
+          <option value="2">Persona 1</option>
+          <option value="3">Persona 2</option>
+        </select>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Compartir</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function initMap() {
+    // Map options
+    var options = {
+      zoom: 17,
+      center: { lat: 4.6920191, lng: -74.0663609 }
+    }
+
+    // New map
+    var map = new google.maps.Map(document.getElementById('map'), options);
+
+    var markers = [
+      {
+        coords: { lat: 4.6920191, lng: -74.0663609 },
+        iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+        content: '<h1 class="fs-6">CAI Andes</h1> <br><a href="../img/cai-andes.png" title="Cai Andes" target="_blank"><img src="../img/cai-andes.png" style="width:250px;"></a><br>'
+      }
+    ];
+
+    // Loop through markers
+    for (var i = 0; i < markers.length; i++) {
+      // Add marker
+      addMarker(markers[i]);
+    }
+
+    // Add Marker Function
+    function addMarker(props) {
+      var marker = new google.maps.Marker({
+        position: props.coords,
+        map: map,
+        //icon:props.iconImage
+      });
+
+      // Check for customicon
+      if (props.iconImage) {
+        // Set icon image
+        marker.setIcon(props.iconImage);
+      }
+
+      // Check content
+      if (props.content) {
+        var infoWindow = new google.maps.InfoWindow({
+          content: props.content
+        });
+
+        marker.addListener('click', function () {
+          infoWindow.open(map, marker);
+        });
+      }
+    }
+
+  }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVLTdDFyZJkoXgw0GXu_g4GJV2zOtzlyA&callback=initMap">
+</script>
+
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+</body>
+</html>
